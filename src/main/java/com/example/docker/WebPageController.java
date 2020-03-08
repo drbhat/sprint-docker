@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class WebPageController {
 
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(value="/welcome", method = RequestMethod.GET)
     public String showWelcomePage(ModelMap model){
 		model.put("name", "Brownie");
         return "welcome";
