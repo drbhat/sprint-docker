@@ -13,6 +13,18 @@ pipeline {
             		bat "mvn -Dmaven.test.failure.ignore=true clean package"
          		}
 			}
+			
+			stage('Test') {
+         		steps {
+            		junit '**/target/surefire-reports/TEST-*.xml'
+               		archiveArtifacts 'target/*.jar'
+         		}
+			}
+			stage('Deploy') {
+         		steps {
+            		echo "Deploy stage"
+         		}
+			}
 		
 		}
 }
