@@ -14,14 +14,15 @@ pipeline {
             		bat "mvn -Dmaven.test.failure.ignore=true clean package"
          		}
 			}
-			/*stage('SonarQube Analysis') {
+			stage('SonarQube Analysis') {
 				steps {
-        			withSonarQubeEnv('sonar-6') { 
-          				bat "mvn sonar:sonar"
+					def scannerHome = tool 'SonarCubeScanner';
+        			withSonarQubeEnv('localSonar') { 
+          				bat "${scannerHome}/bin/sonar-scanner"
         			}
 				}        
         	} 
-   	 		stage('Email Notification') {
+   	 		/*stage('Email Notification') {
 				steps {
         			mail bcc: '', body: '''Hi Welcome to jenkins email alerts 
         			Thanks
