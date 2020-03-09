@@ -17,14 +17,25 @@ pipeline {
          		steps {
             		junit '**/target/surefire-reports/TEST-*.xml'
                		archiveArtifacts 'target/*.jar'
-         		}
-         		
+         		}        		
 			}
 			stage('Deploy') {
          		steps {
             		echo "Deploy stage"
          		}
-			}
-		
+			}		
 		}
+		post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
+            success {
+               echo 'Pilepine run success'
+            }
+            failure {
+               echo 'Pilepine run failed'
+            }
+            aborted {
+                echo 'Pilepine run aborted'
+            }
+         }
 }
