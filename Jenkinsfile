@@ -16,12 +16,27 @@ pipeline {
 			}
 			stage('SonarQube Analysis') {
 				steps {
-					//def scannerHome = tool name: 'SonarCubeScanner'
         			withSonarQubeEnv('localSonar') { 
           				bat "mvn sonar:sonar"
         			}
 				}        
         	} 
+        	stage('Quality Gate Statuc Check') {
+				steps {
+					timeout(time: 1, unit: 'HOURS') {
+              			def qg = waitForQualityGate()
+              			if (qg.status != 'OK') {
+                   			slackSend baseUrl: 'https://hooks.slack.com/services/',
+                   			channel: '#jenkins-pipeline-demo',
+                   			color: 'danger', 
+                   			message: 'SonarQube Analysis Failed', 
+                   			teamDomain: 'javahomecloud',
+                   			tokenCredentialId: 'slack-demo'
+                  			error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              			}
+          			}
+				}        
+        	}
    	 		/*stage('Email Notification') {
 				steps {
         			mail bcc: '', body: '''Hi Welcome to jenkins email alerts 
