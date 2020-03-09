@@ -5,7 +5,7 @@ pipeline {
 			stage('SCM-Get Code From Github') {
          		steps {
             		// Get some code from a GitHub repository
-            		git 'https://github.com/drbhat/sprint-docker'
+            		git ([url:'https://github.com/drbhat/sprint-docker', branch:'develop'])
          		}
 			}
 			stage('Build') {
