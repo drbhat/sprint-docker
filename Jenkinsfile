@@ -21,7 +21,7 @@ pipeline {
         			}
 				}        
         	} 
-        	stage('Quality Gate Statuc Check') {
+        	/*stage('Quality Gate Statuc Check') {
 				steps {
 					timeout(time: 1, unit: 'HOURS') {
               			def qg = waitForQualityGate()
@@ -37,7 +37,7 @@ pipeline {
           			}
 				}        
         	}
-   	 		/*stage('Email Notification') {
+   	 		stage('Email Notification') {
 				steps {
         			mail bcc: '', body: '''Hi Welcome to jenkins email alerts 
         			Thanks
