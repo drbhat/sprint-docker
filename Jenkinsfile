@@ -29,13 +29,13 @@ pipeline {
             // If Maven was able to run the tests, even if some of the test
             // failed, record the test results and archive the jar file.
             success {
-               echo 'Pilepine run success'
+               echo 'Pipeline run success at ${new Date()}'
             }
             failure {
-               echo 'Pilepine run failed'
+               echo 'Pipeline run failed'
             }
             aborted {
-                echo 'Pilepine run aborted'
+                echo 'Pipeline run aborted'
             }
          }
 }
