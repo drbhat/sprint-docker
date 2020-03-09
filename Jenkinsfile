@@ -1,3 +1,4 @@
+//properties([pipelineTriggers([pollSCM('')])])
 pipeline {
 	agent any
 		stages {
@@ -13,6 +14,20 @@ pipeline {
             		bat "mvn -Dmaven.test.failure.ignore=true clean package"
          		}
 			}
+			/*stage('SonarQube Analysis') {
+				steps {
+        			withSonarQubeEnv('sonar-6') { 
+          				bat "mvn sonar:sonar"
+        			}
+				}        
+        	} */
+   	 		stage('Email Notification') {
+				steps {
+        			mail bcc: '', body: '''Hi Welcome to jenkins email alerts 
+        			Thanks
+      				Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'drbhat@gmail.com'
+				}        
+        	}
 			stage('Test') {
          		steps {
             		junit '**/target/surefire-reports/TEST-*.xml'
@@ -35,6 +50,7 @@ pipeline {
    			}
 			stage('Run Container on Dev Server') {
 				steps {
+					bat "docker rm -f sprint-docker"
      				bat "docker run -p 8080:8080 -d --name sprint-docker drbhat/sprint-docker:latest"
      			}	     				
    			}		
