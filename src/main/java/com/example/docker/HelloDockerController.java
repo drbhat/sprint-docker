@@ -10,7 +10,7 @@ public class HelloDockerController {
 	
 	@RequestMapping(path = "/hello", method = RequestMethod.GET)    
 	public String helloGradle() {
-		return "Hello Docker!";
+		return "Hello Docker!!!";
 	}
 
 }
