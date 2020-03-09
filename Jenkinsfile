@@ -19,11 +19,22 @@ pipeline {
                		archiveArtifacts 'target/*.jar'
          		}        		
 			}
-			stage('Deploy') {
+			stage('Build Docker Image') {
          		steps {
-            		echo "Deploy stage"
+            		bat 'docker build -t drbhat/sprint-docker:latest .'
          		}
-			}		
+			}
+			stage('Push Docker Image'){
+     			withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+    				bat "docker login -u drbhat -p ${dockerHubPwd}"
+				}
+        		    			
+     			bat 'docker push drbhat/sprint-docker:latest'
+   			}
+			stage('Run Container on Dev Server'){
+     			def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0'
+     				     				
+   			}		
 		}
 		post {
             // If Maven was able to run the tests, even if some of the test
