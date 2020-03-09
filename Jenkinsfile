@@ -21,7 +21,7 @@ pipeline {
 			}
 			stage('Build Docker Image') {
          		steps {
-            		bat 'docker build -t drbhat/sprint-docker:latest .'
+            		bat "docker build -t drbhat/sprint-docker:latest ."
          		}
 			}
 			stage('Push Docker Image') {
@@ -35,7 +35,7 @@ pipeline {
    			}
 			stage('Run Container on Dev Server') {
 				steps {
-     				def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0'
+     				bat "docker run -p 8080:8080 -d --name sprint-docker drbhat/sprint-docker:latest"
      			}	     				
    			}		
 		}
