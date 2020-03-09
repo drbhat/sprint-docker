@@ -20,14 +20,14 @@ pipeline {
           				bat "mvn sonar:sonar"
         			}
 				}        
-        	} */
+        	} 
    	 		stage('Email Notification') {
 				steps {
         			mail bcc: '', body: '''Hi Welcome to jenkins email alerts 
         			Thanks
       				Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'drbhat@gmail.com'
 				}        
-        	}
+        	} */
 			stage('Test') {
          		steps {
             		junit '**/target/surefire-reports/TEST-*.xml'
