@@ -18,11 +18,7 @@ pipeline {
             		junit '**/target/surefire-reports/TEST-*.xml'
                		archiveArtifacts 'target/*.jar'
          		}
-         		steps {
-              		withSonarQubeEnv('My SonarQube Server') {
-                	bat 'mvn clean package sonar:sonar'
-              		}
-				}
+         		
 			}
 			stage('Deploy') {
          		steps {
