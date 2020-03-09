@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloDockerController {
 
 	
-	@RequestMapping(path = "/hello", method = RequestMethod.GET) 
+	@RequestMapping(path = "/hello", method = RequestMethod.GET)    
 	public String helloGradle() {
 		return "Hello Docker!";
 	}
