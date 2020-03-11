@@ -47,7 +47,7 @@ pipeline {
 			stage('Test') {
          		steps {
             		junit '**/target/surefire-reports/TEST-*.xml'
-               		archiveArtifacts 'target/*.jar'
+               		archiveArtifacts 'target/*.war'
          		}        		
 			}
 			stage('Build Docker Image') {
