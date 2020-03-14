@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:     
+  spring-docker-srv:
+    image: drbhat/sprint-docker
+    ports:
+     - "8080:8080"
+    deploy:
+      replicas: 3
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 50M
