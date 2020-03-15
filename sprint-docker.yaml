@@ -26,7 +26,7 @@ metadata:
     name: sprint-docker
   name: sprint-docker
 spec:
-  type: nodePort
+  type: Cluster
   externalTrafficPolicy: local
   ports:
     - port: 8080
