@@ -27,7 +27,6 @@ metadata:
   name: sprint-docker
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: local
   ports:
     - port: 8080
       targetPort: 8080
